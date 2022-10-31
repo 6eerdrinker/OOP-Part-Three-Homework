@@ -1,6 +1,7 @@
 package Transport;
 
-public abstract class Transport {
+public abstract class
+Transport {
     private String brand;
     private String model;
     private final int productionYear;
@@ -14,21 +15,10 @@ public abstract class Transport {
         setModel(model);
         setColor(color);
         setMaxSpeed(maxSpeed);
-        if (this.brand == null || brand.isBlank()) {
-            this.brand = "Марка указана не корректно";
-        } else {
-            this.brand = brand;
-        }
-        if (this.model == null || model.isBlank()) {
-            this.model = "Модель указана не корректно.";
-        } else {
-            this.model = model;
-        }
-        if (this.color == null || color.isBlank()) {
-            this.color = "Указано не корректно";
-        } else {
-            this.color = color;
-        }
+        this.brand = ValidationUtils.validOrDefault(brand, "Марка указана не корректно");
+        this.model = ValidationUtils.validOrDefault(model, "Модель указана не корректно");
+        this.color = ValidationUtils.validOrDefault(color, "Цвет указан не корректно");
+
         if (this.maxSpeed == 0) {
             System.out.println("Указано не корректно.");
         } else {

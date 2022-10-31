@@ -11,7 +11,6 @@ public class Bus extends Transport {
         super(brand, model, productionYear, color, assemblyCountry, maxSpeed);
         this.routNumber = routNumber;
         this.numberOfSeats = numberOfSeats;
-
         setFare(fare);
 
     }

@@ -1,5 +1,4 @@
 package Transport;
-
 public class Train extends Transport{
     private final float tripPrice;
     public String travelTime;
@@ -12,12 +11,9 @@ public class Train extends Transport{
                  String travelTime, String departureStation,
                  String arrivalStation, int wagonsNumber) {
         super(brand, model, productionYear, color, assemblyCountry, maxSpeed);
+        this.travelTime = ValidationUtils.validOrDefault(travelTime, "Указано не верно");
 
-        if (this.travelTime == null || travelTime.isBlank()) {
-            this.travelTime = "Указано не верно";
-        } else {this.travelTime = travelTime;}
-
-        if (this.wagonsNumber != 0) {
+        if (wagonsNumber <= 0) {
             System.out.println("Указано не корректно.");
         }else {this.wagonsNumber = wagonsNumber;}
 

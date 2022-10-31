@@ -22,12 +22,7 @@ public class Car extends Transport {
                Insurance insurance) {
 
         super(brand, model, productionYear, color, assemblyCountry, maxSpeed);
-
-        if (bodyType == null || bodyType.isBlank()) {
-            this.bodyType = "Не корректно введены данные";
-        } else {
-            this.bodyType = bodyType;
-        }
+        this.bodyType = ValidationUtils.validOrDefault(bodyType, "Не корректно введены данные");
         this.regNumber = regNumber;
         this.seatsNum = Math.max(seatsNum, 1);
         this.winterTires = winterTires;
@@ -48,8 +43,6 @@ public class Car extends Transport {
         setWinterTires(isWinterTires());
 
     }
-
-
     public void setSeasonTires() {
         int currentMonth = LocalDate.now().getMonthValue();
         if (currentMonth <= 4 || currentMonth >= 11 != this.winterTires) {
@@ -58,7 +51,6 @@ public class Car extends Transport {
             System.out.println("Пора переобуться");
         }
     }
-
     public boolean isRegNumberValid() {
         if (regNumber.length() != 9) {
             return false;
@@ -80,7 +72,6 @@ public class Car extends Transport {
         return allowedSimbols.contains("" + simbol);
     }
 
-
     public float getEngineVolume() {
         return engineVolume;
     }
@@ -89,7 +80,6 @@ public class Car extends Transport {
         this.engineVolume = engineVolume > 0.0f ? engineVolume : 1.5f;
     }
 
-
     public String getTransmission() {
         return transmission;
     }
@@ -97,7 +87,6 @@ public class Car extends Transport {
     public void setTransmission(String transmission) {
         this.transmission = ValidationUtils.validOrDefault(transmission, "МКПП");
     }
-
     public String getBodyType() {
         return bodyType;
     }
@@ -109,7 +98,6 @@ public class Car extends Transport {
     public void setRegNumber(String regNumber) {
         this.regNumber = ValidationUtils.validOrDefault(regNumber, "Не корректный номер");
     }
-
     public int getSeatsNum() {
         return seatsNum;
     }
@@ -136,7 +124,6 @@ public class Car extends Transport {
                 "дизельным топливом или зарядить электричеством");
 
     }
-
     public static class Key {
         private final boolean remoteEngineStart;
         private final boolean keylessAccess;
@@ -145,11 +132,9 @@ public class Car extends Transport {
             this.remoteEngineStart = remoteEngineStart;
             this.keylessAccess = keylessAccess;
         }
-
         public Key() {
             this(false, false);
         }
-
 
         public boolean isRemoteEngineStart() {
             return remoteEngineStart;
@@ -159,7 +144,6 @@ public class Car extends Transport {
             return keylessAccess;
         }
     }
-
     public static class Insurance {
         private final LocalDate validUntil;
         private final float cost;
@@ -180,10 +164,8 @@ public class Car extends Transport {
             }
         }
 
-
         public Insurance() {
             this(null, 10_000, null);
-
         }
 
         public LocalDate getValidUntil() {
@@ -203,14 +185,11 @@ public class Car extends Transport {
                 System.out.println("Срочно оформлять новую страховку");
             }
         }
-
         public void checkNumber() {
             if (number.length() != 9) {
                 System.out.println("Номер страховки не корректный");
             }
         }
 
-
     }
-
 }

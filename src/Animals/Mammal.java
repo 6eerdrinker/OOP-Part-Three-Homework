@@ -1,23 +1,16 @@
 package Animals;
 
+import Transport.ValidationUtils;
+
 public class Mammal extends Animals {
     String livingEnvironment;
     String travelSpeed;
 
     public Mammal(String animalsName, int age, String livingEnvironment, String travelSpeed) {
         super(animalsName, age);
+        this.livingEnvironment = ValidationUtils.validOrDefault(livingEnvironment, "Cреда обитания введена некорректно");
+        this.travelSpeed = ValidationUtils.validOrDefault(travelSpeed, "Скорость передвижения введена некорректно");
 
-        if (livingEnvironment == null || livingEnvironment.isBlank()) {
-            this.livingEnvironment = "Некорректно указана среда обитания";
-        } else {
-            this.livingEnvironment = livingEnvironment;
-        }
-
-        if (travelSpeed == null || travelSpeed.isBlank() || travelSpeed.isEmpty()) {
-            this.travelSpeed = "Скорость передвижения указана некорректно";
-        } else {
-            this.travelSpeed = travelSpeed;
-        }
     }
 
     public String getLivingEnvironment() {
@@ -39,22 +32,15 @@ public class Mammal extends Animals {
     public void walk() {
         System.out.println("Млекопитающие могут гулять.");
     }
-
     @Override
     public void eat() {
         super.eat();
         System.out.println("Млекопитающие питаются разной пищей.");
     }
-
     @Override
     public void go() {
         super.go();
         System.out.println("Разные млекопитающие передвигаются с разной скоростью.");
-    }
-
-    @Override
-    public void sleep() {
-        super.sleep();
     }
 
 }

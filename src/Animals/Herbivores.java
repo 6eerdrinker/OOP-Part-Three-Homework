@@ -1,5 +1,7 @@
 package Animals;
 
+import Transport.ValidationUtils;
+
 import java.util.Objects;
 
 public class Herbivores extends Mammal{
@@ -8,10 +10,7 @@ public class Herbivores extends Mammal{
     public Herbivores(String animalsName, int age, String livingEnvironment,
                       String travelSpeed, String foodType) {
         super(animalsName, age, livingEnvironment, travelSpeed);
-        if (foodType == null|| foodType.isBlank()|| foodType.isEmpty()) {
-            this.foodType = "Тип еды указан некорректно";
-        }else {
-            this.foodType = foodType;}
+        this.foodType = ValidationUtils.validOrDefault(foodType, "Некорректно указан тип еды");
     }
 
     public String getFoodType() {
@@ -27,16 +26,6 @@ public class Herbivores extends Mammal{
     }
 
     @Override
-    public void walk() {
-        System.out.println("Травоядные могут гулять.");
-    }
-
-    @Override
-    public void sleep() {
-        super.sleep();
-    }
-
-    @Override
     public void eat() {
         System.out.println("Травоядные едят растительность.");
     }
@@ -46,35 +35,10 @@ public class Herbivores extends Mammal{
         System.out.println("Разные травоядные передвигаются с разной скоростью.");;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Herbivores that = (Herbivores) o;
-        return Objects.equals(foodType, that.foodType);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), foodType);
-    }
-
-
-    @Override
-    public String toString() {
-        return "Herbivores{" +
-                "foodType='" + foodType + '\'' +
-                ", livingEnvironment='" + livingEnvironment + '\'' +
-                ", travelSpeed='" + travelSpeed + '\'' +
-                "} " + super.toString();
-    }
-
     public static void printInfo(Herbivores herbivores) {
         System.out.println("Животное: " + herbivores.getAnimalsName() + ", " +
                 herbivores.getAge() + " - летнего возраста, " + "среда обитания: "
                 + herbivores.getLivingEnvironment() + ". " + herbivores.getTravelSpeed() +
-                ", тип питания: " + herbivores.getFoodType());}
-
+                ". Тип питания: " + herbivores.getFoodType());}
 
 }

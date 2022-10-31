@@ -60,7 +60,7 @@ public class Transport_Main {
         Train leningrad = new Train("Ленинград", "D-125", 2019,
                 null, "Россия", 270, 1_700f,
                 "12 часов", "Ленинградский вокзал",
-                "Ленинград - пассажирский", 8);
+                "Ленинград - пассажирский", 0);
         printInfo(lastochka);
         printInfo(leningrad);
         lastochka.refill();

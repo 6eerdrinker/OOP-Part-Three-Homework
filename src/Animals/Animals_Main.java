@@ -82,8 +82,6 @@ public class Animals_Main {
         falcon.go();
         System.out.println();
 
-//        Animals[] animal = {gazelle, giraffe, horse, hyena, tiger, bear,
-//                frog, alreadyFreshwater, peacock, penguin, doDo, gull, albatross, falcon};
         System.out.println("Проверка на дублирование");
         Herbivores[] herbivores = {gazelle, giraffe, horse};
         System.out.println("В классе травоядных " + Arrays.toString(herbivores));

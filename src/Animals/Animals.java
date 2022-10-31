@@ -1,14 +1,13 @@
 package Animals;
 
+import Transport.ValidationUtils;
+
 public class Animals {
     private String animalsName;
     private int age;
 
     public Animals(String animalsName, int age) {
-        if (animalsName == null || animalsName.isBlank() || animalsName.isEmpty()) {
-            this.animalsName = "Название животного введено некорректно";
-        }else {
-            this.animalsName = animalsName;}
+        this.animalsName = ValidationUtils.validOrDefault(animalsName, "Название животного введено не корректно");
         if (age == 0) {
             System.out.println("Возраст животного введен некорректно");
         }else {
